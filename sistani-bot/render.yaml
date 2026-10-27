@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: sistani-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: BOT_TOKEN
+        sync: false
+      - key: WEBHOOK_SECRET
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: DB_PATH
+        value: data/sistani.sqlite
+      - key: COOLDOWN_SECONDS
+        value: "30"
+      - key: INDEX_TTL_SECONDS
+        value: "86400"
+      - key: USE_GEMINI_SELECTOR
+        value: "0"
